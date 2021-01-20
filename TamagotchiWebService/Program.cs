@@ -12,7 +12,7 @@ namespace TamagotchiWebService
     public class Program
     {
         public static void Main(string[] args)
-        {
+        {//hi
             CreateHostBuilder(args).Build().Run();
         }
 
