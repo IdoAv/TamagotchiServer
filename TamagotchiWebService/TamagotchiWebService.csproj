@@ -22,8 +22,4 @@
     <ProjectReference Include="..\TamagotchiBL\TamagotchiBL.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="DataTransferObjects\" />
-  </ItemGroup>
-
 </Project>
