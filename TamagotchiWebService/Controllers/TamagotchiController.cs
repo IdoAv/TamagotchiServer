@@ -45,6 +45,7 @@ namespace TamagotchiWebService.Controllers
             PlayerDTO player = HttpContext.Session.GetObject<PlayerDTO>("loggedIn");
             if (player != null)
             {
+                context.SaveChanges();
                 HttpContext.Session.Clear();
                 Response.StatusCode = (int)System.Net.HttpStatusCode.OK;
             }
