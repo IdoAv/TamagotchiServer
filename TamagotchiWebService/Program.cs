@@ -14,7 +14,7 @@ namespace TamagotchiWebService
         public static void Main(string[] args)
         {
             CreateHostBuilder(args).Build().Run();
-           //h  
+           //hi  
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
