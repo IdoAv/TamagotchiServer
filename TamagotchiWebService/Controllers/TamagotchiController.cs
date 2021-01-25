@@ -18,11 +18,50 @@ namespace TamagotchiWebService.Controllers
             this.context = context;
         }
 
-        [Route("Test")]
+        [Route("UserNameExist")]
         [HttpGet]
-        public string Test()
+        public bool UserNameExist([FromQuery] string userName)
         {
-            return "it works";
+            bool exist = context.PlayerExistByUserName(userName);
+            if (exist)
+            {
+                Response.StatusCode = (int)System.Net.HttpStatusCode.Forbidden;
+                return true;
+            }
+            Response.StatusCode = (int)System.Net.HttpStatusCode.OK;
+            return false;
+        }
+        [Route("EmailExist")]
+        [HttpGet]
+        public bool EmailExist([FromQuery] string email)
+        {
+            bool exist = context.PlayerExistByEmail(email);
+            if (exist)
+            {
+                Response.StatusCode = (int)System.Net.HttpStatusCode.Forbidden;
+                return true;
+            }
+            Response.StatusCode = (int)System.Net.HttpStatusCode.OK;
+            return false;
+        }
+        [Route("Register")]
+        [HttpPost]
+        public void Register([FromBody] PlayerDTO player)
+        {
+            Player p = new Player()
+            {
+                PlayerEmail = player.PlayerEmail,
+                PlayerPassword = player.PlayerPassword,
+                PlayerFirstName = player.PlayerFirstName,
+                PlayerLastName = player.PlayerLastName,
+                PlayerBirthDate = player.PlayerBirthDate,
+                PlayerActiveAnimal = player.PlayerActiveAnimal,
+                PlayerGender = player.PlayerGender,
+                PlayerId = player.PlayerId,
+                PlayerUserName = player.PlayerUserName
+            };
+            context.Register(p);
+            Response.StatusCode = (int)System.Net.HttpStatusCode.OK;
         }
     }
 }
