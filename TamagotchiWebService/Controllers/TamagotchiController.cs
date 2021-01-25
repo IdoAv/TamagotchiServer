@@ -54,5 +54,23 @@ namespace TamagotchiWebService.Controllers
                 Response.StatusCode = (int)System.Net.HttpStatusCode.Forbidden;
             }
         }
+        [Route("GetAnimals")]
+        [HttpGet]
+        public List<AnimalDTO> GetAnimals()
+        {
+            PlayerDTO player = HttpContext.Session.GetObject<PlayerDTO>("loggedIn");
+            if(player != null)
+            {
+                List<AnimalDTO> animals = new List<AnimalDTO>();
+                foreach(Animal a in context.LogIn(player.PlayerEmail, player.PlayerPassword).GetAnimals())
+                {
+                    animals.Add(new AnimalDTO(a));
+                }
+                Response.StatusCode = (int)System.Net.HttpStatusCode.OK;
+                return animals;
+            }
+            Response.StatusCode = (int)System.Net.HttpStatusCode.OK;
+            return null;
+        }
     }
 }
