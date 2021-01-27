@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TamagotchiBL.Models;
+using TamagotchiWebService.DataTransferObjects;
 
 namespace TamagotchiWebService.Controllers
 {
